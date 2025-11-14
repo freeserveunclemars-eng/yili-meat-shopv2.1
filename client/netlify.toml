@@ -1,0 +1,28 @@
+# Netlify 部署配置檔案
+
+[build]
+  # 建置目錄（相對於此檔案）
+  base = "."
+  # 建置命令
+  command = "npm install && npm run build"
+  # 發佈目錄
+  publish = "build"
+
+# 環境變數（在 Netlify 後台設定，這裡只是說明）
+# REACT_APP_API_URL = "https://your-backend.railway.app/api"
+
+# 重新導向規則（用於 React Router）
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# 標頭設定
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
